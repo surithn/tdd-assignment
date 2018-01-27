@@ -9,4 +9,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author kxhb130
  *
  */
-public interface HotelRepository extends JpaRepository<Hotel, Long> {}
+public interface HotelRepository extends JpaRepository<Hotel, Long> {
+	Hotel findByName(String name);
+}

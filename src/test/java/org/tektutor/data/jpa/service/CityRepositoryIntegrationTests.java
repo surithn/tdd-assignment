@@ -18,6 +18,7 @@ package org.tektutor.data.jpa.service;
 
 import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
@@ -40,10 +41,21 @@ public class CityRepositoryIntegrationTests {
 
 	@Autowired
 	CityRepository repository;
+	
+	@Autowired
+	HotelRepository hotelRepository;
 
 	@Test
 	public void findsFirstPageOfCities() {
 		Page<City> cities = this.repository.findAll(new PageRequest(0, 10));
 		assertThat(cities.getTotalElements(), is(greaterThan(20L)));
 	}
+	
+	@Test
+	public void checkHotelByNameIsEqual() {
+		Hotel hotel = this.hotelRepository.findByName("Swissotel");
+		assertEquals(hotel.getName(), "Swissotel");
+	}
+	
+	
 }
